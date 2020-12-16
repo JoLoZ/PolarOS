@@ -1,1 +1,2 @@
-# bos
+# BOS
+### The boxed system
