@@ -18,6 +18,7 @@
         .login-wrapper {
             width: 30%;
             margin: 0;
+            padding: 5px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -26,13 +27,17 @@
     </style>
 </head>
 
-<body id="body" data-auto_bg="nature,wallpaper">
+<body id="body" data-auto_bg="nature,wallpaper" onload="onload();">
     <div class="card login-wrapper">
         <center>
             <img data-src="/assets/icons/logo.png" style="width:30%">
 
 
             <form>
+                <h2 class="step-fullscreen">Fullscreen mode suggested</h2>
+                <p class="step-fullscreen">BoxOS is best experienced in the distractionless fullscreen mode. While it's not forced, it really improves the experience.</p>
+                <a href="#" onclick="openFullscreen(); step(1)" class="btn btn-primary step-fullscreen">Continue in fullscreen mode</a>
+                <p><a href="#" onclick="step(1)" class="btn btn-link step-fullscreen">Continue without fulscreen</a></p>
                 <h2 class="step-1">Welcome!</h2>
                 <div class="form-group step-1">
                     <div class="input-group input-group-alternative mb-4">
@@ -43,7 +48,7 @@
                     </div>
                 </div>
                 <a href="#" class="btn btn-primary step-1" onclick="step(2)">Continue</a>
-                <h2 class="step-2">Welcome back UserNameHere!</h2>
+                <h2 class="step-2" id="welcome-user">Welcome UserNameHere!</h2>
                 <p><a href="#" onClick="step(1)" id="usernameReminder" class="step-2">Not you?</a></p>
                 <div class="form-group step-2">
                     <div class="input-group input-group-alternative mb-4">
@@ -66,73 +71,83 @@
                 <div class="progress-bar bg-primary" id="loading-bar" role="progressbar" style="width: 0%;"></div>
             </div>
         </center>
-        <script>
-            function hideAll() {
-                $(".step-1").slideUp("slow");
-                $(".step-2").slideUp("slow");
-                $(".step-3").slideUp("slow");
-                $(".step-success").slideUp("slow");
-                $(".step-remember").slideUp("slow");
-                $(".step-welcome").slideUp("slow");
-                $(".step-reset").slideUp("slow");
-            }
-
-            function step(number) {
-                $("#usernameReminder").text("Not " + $("#username").val() + "?");
-                hideAll();
-                $(".step-" + number).slideDown("slow");
-                window["step_" + number]();
-            }
-
-            function step_1() {
-                $("#reset-link").slideDown("slow");
-            }
-
-            function step_2() {}
-
-            function step_3() {
-                $("#reset-link").slideUp("slow");
-                setTimeout(function() {
-                    step('success');
-                }, 1500)
-            }
-
-            function step_success() {
-                setTimeout(function() {
-                    step('remember');
-                }, 1500)
-            }
-
-            function step_remember() {}
-
-            function step_welcome() {
-                var progress = 0;
-                setInterval(function (){
-                    $("#loading-bar").style.width = progress + "%";
-                    progress = progress + 1;
-
-                }, 200);
-            }
-
-            function remember() {
-                console.log("Remembered");
-            }
-
-            function step_reset() {
-                $("#reset-link").slideUp("slow");
-                alert("WIP");
-                step(1);
-            }
-
-            
-        </script>
     </div>
     <!-- Core -->
-    <script src="/assets/js/core/jquery.min.js" onload="step(1);"></script>
+    <script src="/assets/js/core/jquery.min.js"></script>
     <script src="/assets/js/core/popper.min.js"></script>
     <script src="/assets/js/core/bootstrap.min.js"></script>
     <!-- Theme JS -->
     <script src="/assets/js/argon-design-system.min.js"></script>
 
     <script src="/assets/js/app.js"></script>
+
+    <script>
+        function hideAll() {
+            $(".step-fullscreen").slideUp("slow");
+            $(".step-1").slideUp("slow");
+            $(".step-2").slideUp("slow");
+            $(".step-3").slideUp("slow");
+            $(".step-success").slideUp("slow");
+            $(".step-remember").slideUp("slow");
+            $(".step-welcome").slideUp("slow");
+            $(".step-reset").slideUp("slow");
+        }
+
+        function step(number) {
+            $("#usernameReminder").text("Not " + $("#username").val() + "?");
+            $("#welcome-user").text("Welcome " + $("#username").val() + "!");
+            hideAll();
+            $(".step-" + number).slideDown("slow");
+            window["step_" + number]();
+        }
+
+        function step_1() {
+            $("#reset-link").slideDown("slow");
+        }
+
+        function step_2() {}
+
+        function step_3() {
+            $("#reset-link").slideUp("slow");
+            setTimeout(function() {
+                step('success');
+            }, 1500)
+        }
+
+        function step_success() {
+            setTimeout(function() {
+                step('remember');
+            }, 1500)
+        }
+
+        function step_remember() {}
+
+        function step_welcome() {}
+
+        function step_fullscreen() {
+            $("#reset-link").slideUp("slow");
+        }
+
+        function remember() {
+            console.log("Remembered");
+        }
+
+        function step_reset() {
+            $("#reset-link").slideUp("slow");
+            alert("WIP");
+            step(1);
+        }
+
+
+        hideAll();
+        $("#reset-link").slideUp("slow");
+        function onload() {
+            if ((window.fullScreen) ||
+                (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+                step(1)
+            } else {
+                step("fullscreen")
+            }
+        }
+    </script>
 </body>
