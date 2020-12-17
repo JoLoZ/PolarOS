@@ -63,7 +63,7 @@
             <a href="#" onClick="remember(); step('welcome')" class="btn btn-primary step-remember">Yes</a> <a href="#" onclick="step('welcome')" class="btn btn-secondary step-remember">No</a>
             <h2 class="step-welcome">Hang tight, I'm loading your homescreen</h2>
             <div class="progress step-welcome">
-                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                <div class="progress-bar bg-primary" id="loading-bar" role="progressbar" style="width: 0%;"></div>
             </div>
         </center>
         <script>
@@ -105,7 +105,14 @@
 
             function step_remember() {}
 
-            function step_welcome() {}
+            function step_welcome() {
+                var progress = 0;
+                setInterval(function (){
+                    $("#loading-bar").style.width = progress + "%";
+                    progress = progress + 1;
+
+                }, 200);
+            }
 
             function remember() {
                 console.log("Remembered");
@@ -116,6 +123,8 @@
                 alert("WIP");
                 step(1);
             }
+
+            step(1);
         </script>
     </div>
     <!-- Core -->
