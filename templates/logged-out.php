@@ -124,11 +124,11 @@
                 step(1);
             }
 
-            step(1);
+            
         </script>
     </div>
     <!-- Core -->
-    <script src="/assets/js/core/jquery.min.js"></script>
+    <script src="/assets/js/core/jquery.min.js" onload="step(1);"></script>
     <script src="/assets/js/core/popper.min.js"></script>
     <script src="/assets/js/core/bootstrap.min.js"></script>
     <!-- Theme JS -->
