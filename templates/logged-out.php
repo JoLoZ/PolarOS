@@ -1,6 +1,9 @@
 <html id="all">
 
 <head>
+
+    <title>Page OS</title>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
 
@@ -31,10 +34,6 @@
 
 <body onload="onload();" data-auto_bg="nature,wallpaper">
     <div class="wrapper">
-        <div style="padding:1rem">
-            <h1 class="text-white" style="font-size: 5rem; line-height: 0.7;">00:00</h1>
-            <h1 class="text-white" style="line-height: 0.7;">00.00.0000</h1>
-        </div>
         <div class="card login-wrapper">
             <center>
                 <img data-src="/assets/icons/logo.png" style="width:30%">
@@ -42,7 +41,7 @@
 
                 <form>
                     <h2 class="step-fullscreen">Fullscreen mode suggested</h2>
-                    <p class="step-fullscreen">BoxOS is best experienced in the distractionless fullscreen mode. While it's not forced, it really improves the experience.<br>You can easily enable and disable it using the <code>F11</code> key.</p>
+                    <p class="step-fullscreen">Page OS is best experienced in the distractionless fullscreen mode. While it's not forced, it really improves the experience.<br>You can easily enable and disable it using the <code>F11</code> key.</p>
                     <a href="#" onclick="destroyFullscreenChecker();step(1)" class="btn btn-link step-fullscreen">Continue without fulscreen</a>
                     <h2 class="step-1">Welcome!</h2>
                     <div class="form-group step-1">
@@ -138,7 +137,7 @@
 
         function step_welcome() {
             setTimeout(function() {
-                window.open("/os.php?debug=true", "_self");
+                window.open("/?debug=true", "_self");
             }, 3500)
         }
 
@@ -185,14 +184,14 @@
         }
 
         function checkUsername() {
-            $("#result-1").load("/os.php?api=true&action=checkUsername&username=" + $("#username").val());
+            $("#result-1").load("/?api=true&action=checkUsername&username=" + $("#username").val());
         }
 
         var loginSuccess
 
         function login() {
             loginSuccess = false;
-            $.post("/os.php", {
+            $.post("/", {
                     api: true,
                     action: "login",
                     username: $("#username").val(),
