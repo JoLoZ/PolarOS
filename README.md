@@ -1,2 +1,2 @@
-# Page OS
+# Polar OS
 ### (formly BoxOS)
