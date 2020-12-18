@@ -10,14 +10,21 @@ function updateImages() {
         node.clientWidth;
     }
     if (node.hasAttribute("data-bg_src")) {
+      if(node.clientHeight < node.clientWidth){
       node.style.backgroundImage =
+        "url('/img.php?src=" +
+        node.dataset.bg_src +
+        "&w=" +
+        node.clientWidth +
+        "')";
+      }else{
+        node.style.backgroundImage =
         "url('/img.php?src=" +
         node.dataset.bg_src +
         "&h=" +
         node.clientHeight +
-        "&w=" +
-        node.clientWidth +
         "')";
+      }
     }
 
     if (node.hasAttribute("data-auto_bg")) {
@@ -33,32 +40,15 @@ function updateImages() {
   });
 }
 
-/* View in fullscreen */
-function openFullscreen() {
-  /* Get the documentElement (<html>) to display the page in fullscreen */
-  var elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    /* IE11 */
-    elem.msRequestFullscreen();
+var loadingBarAnimation = 0;
+function update_loading_bar () {
+  $("#loading-bar-" + loadingBarAnimation).hide();
+  $("#loading-bar-118").hide();
+  loadingBarAnimation = loadingBarAnimation + 1;
+  $("#loading-bar-" + loadingBarAnimation).show();
+  if (loadingBarAnimation == 118){
+    loadingBarAnimation = 0;
   }
 }
 
-/* Close fullscreen */
-function closeFullscreen() {
-  /* Get the documentElement (<html>) to display the page in fullscreen */
-  var elem = document.documentElement;
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    /* Safari */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) {
-    /* IE11 */
-    document.msExitFullscreen();
-  }
-}
+var loadingBarAnimationTimer = setInterval(update_loading_bar, 50);

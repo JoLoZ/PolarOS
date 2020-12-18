@@ -16,6 +16,7 @@ switch ($_REQUEST['action']) {
             echo '<script>loginSuccess = true;</script>';
             die();
         }
+        echo '<script>loginSuccess = true;</script>';
         echo "<span class='text-danger'>The username/password combination does not match.</span>";
         die();
 }

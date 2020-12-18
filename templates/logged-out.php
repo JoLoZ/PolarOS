@@ -2,7 +2,9 @@
 
 <head>
 
-    <title>Page OS</title>
+    <title>PolarOS</title>
+
+    <link type="text/css" href="/assets/css/app.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
@@ -11,7 +13,7 @@
 
     <!-- Theme CSS -->
     <link type="text/css" href="/assets/css/argon-design-system.min.css" rel="stylesheet">
-    <link type="text/css" href="/assets/css/app.css" rel="stylesheet">
+
     <style>
         body {
             background-repeat: no-repeat;
@@ -24,6 +26,10 @@
             width: 30%;
             margin: 0;
             padding: 5px;
+            z-index: -1;
+        }
+
+        .centered {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -33,36 +39,34 @@
 </head>
 
 <body onload="onload();" data-auto_bg="nature,wallpaper">
+
     <div class="wrapper">
-        <div class="card login-wrapper">
+        <div class="card login-wrapper centered">
             <center>
-                <img data-src="/assets/icons/logo.png" style="width:30%">
+                <img data-src="/assets/img/icons/logo.png" style="width:30%">
 
 
                 <form>
                     <h2 class="step-fullscreen">Fullscreen mode suggested</h2>
-                    <p class="step-fullscreen">Page OS is best experienced in the distractionless fullscreen mode. While it's not forced, it really improves the experience.<br>You can easily enable and disable it using the <code>F11</code> key.</p>
+                    <p class="step-fullscreen">PolarOS is best experienced in the distractionless fullscreen mode. While it's not forced, it really improves the experience.<br>You can easily enable and disable it using the <code>F11</code> key.</p>
                     <a href="#" onclick="destroyFullscreenChecker();step(1)" class="btn btn-link step-fullscreen">Continue without fulscreen</a>
                     <h2 class="step-1">Welcome!</h2>
                     <div class="form-group step-1">
                         <div class="input-group input-group-alternative mb-4">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><img data-src="/assets/icons/logo.png" style="height:100%"></span>
+                                <span class="input-group-text"><img data-src="/assets/img/icons/logo.png" style="height:100%"></span>
                             </div>
                             <input class="form-control form-control-alternative" placeholder="Username" type="text" id="username">
                         </div>
                     </div>
                     <div class="step-1" id="result-1"></div>
                     <a href="#" class="btn btn-primary step-1" onclick="checkUsername()">Continue</a>
-
-
-
                     <h2 class="step-2" id="welcome-user">Welcome UserNameHere!</h2>
                     <p><a href="#" onClick="step(1)" id="usernameReminder" class="step-2">Not you?</a></p>
                     <div class="form-group step-2">
                         <div class="input-group input-group-alternative mb-4">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><img data-src="/assets/icons/logo.png" style="height:100%"></span>
+                                <span class="input-group-text"><img data-src="/assets/img/icons/logo.png" style="height:100%"></span>
                             </div>
                             <input class="form-control form-control-alternative" placeholder="Password" type="password" id="password">
                             <div class="step-2" id="result-2"></div>
@@ -76,13 +80,16 @@
                 <h2 class="step-remember">Should I remember you?</h2>
                 <p class="step-remember">I can save a tiny bit of information on this device to remember you and only ask you for your password the next time. <span class="text-danger">Only enable this on private devices.</span></p>
                 <a href="#" onClick="remember(); step('welcome')" class="btn btn-primary step-remember">Yes</a> <a href="#" onclick="step('welcome')" class="btn btn-secondary step-remember">No</a>
-                <h2 class="step-welcome">Hang tight, I'm loading your homescreen</h2>
+                <p class="step-welcome"></p>
                 <div class="progress step-welcome">
-                    <div class="progress-bar bg-primary" id="loading-bar" role="progressbar" style="width: 0%;"></div>
+                    <div class="progress-bar bg-transparent" id="loading-bar" role="progressbar" style="width: 0%;"></div>
                 </div>
             </center>
         </div>
     </div>
+
+    <?php create_loadingScreen(); ?>
+
     <!-- Core -->
     <script src="/assets/js/core/jquery.min.js"></script>
     <script src="/assets/js/core/popper.min.js"></script>
@@ -136,9 +143,16 @@
         function step_remember() {}
 
         function step_welcome() {
+            $("#loading-placeholder").hide();
+            //var loadingBarAnimationTimer = setInterval(update_loading_bar, 50);
+            $("#loading-bar-0").show();
+            setTimeout(function() {
+                $(".loading-screen").fadeIn("1000");
+            }, 1700)
+
             setTimeout(function() {
                 window.open("/?debug=true", "_self");
-            }, 3500)
+            }, 2700)
         }
 
         function step_fullscreen() {
@@ -160,6 +174,13 @@
         $("#reset-link").slideUp("slow");
         updateImages();
 
+        clearInterval(loadingBarAnimationTimer);
+        $(".loading-boot").hide();
+        
+        setTimeout(function() {
+            $(".loading-screen").fadeOut("slow");
+        }, 500);
+
         var fschecker;
 
         function destroyFullscreenChecker() {
@@ -167,6 +188,7 @@
         }
 
         function onload() {
+
             if ((window.fullScreen) ||
                 (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
                 step(1);
