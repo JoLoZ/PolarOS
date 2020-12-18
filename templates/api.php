@@ -7,7 +7,7 @@ switch ($_REQUEST['action']) {
             echo '<script>step(2);</script>';
             die();
         }
-        echo "<span class='text-danger'>That username doesn't exist.</span>";
+        echo "<script>step('register')</script>";
         die();
         break;
     case "login":
@@ -16,7 +16,6 @@ switch ($_REQUEST['action']) {
             echo '<script>loginSuccess = true;</script>';
             die();
         }
-        echo '<script>loginSuccess = true;</script>';
         echo "<span class='text-danger'>The username/password combination does not match.</span>";
         die();
 }

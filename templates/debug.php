@@ -19,18 +19,15 @@
             background-position: center;
             background-size: cover;
         }
-
     </style>
 </head>
 
 <body onload="onload()">
 
-        <?php create_loadingScreen(); ?>
+    <?php create_loadingScreen(); ?>
 
     <p>Debugging is fun!</p>
     <button onclick="window.open('/', '_self')">Make it end</button>
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <!-- Core -->
     <script src="/assets/js/core/jquery.min.js"></script>
@@ -45,7 +42,9 @@
         updateImages();
 
         function onload() {
-            //$(".loading-screen").fadeOut("slow");
+            setTimeout(function() {
+                $(".loading-screen").fadeOut("slow");
+            }, 10000);
         }
     </script>
 </body>

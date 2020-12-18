@@ -61,6 +61,7 @@
                     </div>
                     <div class="step-1" id="result-1"></div>
                     <a href="#" class="btn btn-primary step-1" onclick="checkUsername()">Continue</a>
+
                     <h2 class="step-2" id="welcome-user">Welcome UserNameHere!</h2>
                     <p><a href="#" onClick="step(1)" id="usernameReminder" class="step-2">Not you?</a></p>
                     <div class="form-group step-2">
@@ -75,15 +76,37 @@
                     <a href="#" class="btn btn-primary step-2" onclick="step(3)">Login</a>
                     <p><a href="#" onClick="step('reset')" id="reset-link">Forgot your creditals?</a>
                 </form>
+
                 <h2 class="step-3">Logging you in...</h2>
+
                 <h2 class="step-success">Welcome back!</h2>
+
                 <h2 class="step-remember">Should I remember you?</h2>
                 <p class="step-remember">I can save a tiny bit of information on this device to remember you and only ask you for your password the next time. <span class="text-danger">Only enable this on private devices.</span></p>
                 <a href="#" onClick="remember(); step('welcome')" class="btn btn-primary step-remember">Yes</a> <a href="#" onclick="step('welcome')" class="btn btn-secondary step-remember">No</a>
+
                 <p class="step-welcome"></p>
                 <div class="progress step-welcome">
                     <div class="progress-bar bg-transparent" id="loading-bar" role="progressbar" style="width: 0%;"></div>
                 </div>
+
+                <h2 class="step-register">That username isn't used.</h2>
+                <p class="step-register">If you wish to register it, you can do so below. Otherwise you maybe want to <a href="#" onclick="step(1)">retry the login.</a></p>
+                <form class="step-register">
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><img data-src="/assets/img/icons/logo.png" style="height:100%"></span>
+                            </div>
+                            <input class="form-control form-control-alternative" id="register-username" disabled type="text">
+                        </div>
+                        <p class="text-small text-muted">To change the username, <a href="#" onclick="step(1);">retry the login</a>.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="register-email" placeholder="name@example.com">
+                    </div>
+                    <a href="#" onClick="remember(); step('register-welcome')" class="btn btn-primary step-register">Sign up</a>
+                </form>
             </center>
         </div>
     </div>
@@ -109,6 +132,9 @@
             $(".step-remember").slideUp("slow");
             $(".step-welcome").slideUp("slow");
             $(".step-reset").slideUp("slow");
+
+            $(".step-register").slideUp("slow");
+            $(".step-register-welcome").slideUp("slow");
         }
 
         function step(number) {
@@ -159,6 +185,12 @@
             $("#reset-link").slideUp("slow");
         }
 
+        function step_register() {
+            $("#reset-link").slideUp("slow");
+            $("#register-username").val($("#username").val())
+
+        }
+
         function remember() {
             console.log("Remembered");
         }
@@ -176,7 +208,7 @@
 
         clearInterval(loadingBarAnimationTimer);
         $(".loading-boot").hide();
-        
+
         setTimeout(function() {
             $(".loading-screen").fadeOut("slow");
         }, 500);
