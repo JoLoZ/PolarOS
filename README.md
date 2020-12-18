@@ -1,2 +1,2 @@
-# BOS
-### The boxed system
+# Page OS
+### (formly BoxOS)
