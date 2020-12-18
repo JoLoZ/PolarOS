@@ -31,7 +31,10 @@
 
 <body onload="onload();" data-auto_bg="nature,wallpaper">
     <div class="wrapper">
-
+        <div style="padding:1rem">
+            <h1 class="text-white" style="font-size: 5rem; line-height: 0.7;">00:00</h1>
+            <h1 class="text-white" style="line-height: 0.7;">00.00.0000</h1>
+        </div>
         <div class="card login-wrapper">
             <center>
                 <img data-src="/assets/icons/logo.png" style="width:30%">
@@ -135,7 +138,7 @@
 
         function step_welcome() {
             setTimeout(function() {
-                window.open("/?debug=true", "_self");
+                window.open("/os.php?debug=true", "_self");
             }, 3500)
         }
 
@@ -186,6 +189,7 @@
         }
 
         var loginSuccess
+
         function login() {
             loginSuccess = false;
             $.post("/os.php", {
@@ -196,9 +200,9 @@
                 })
                 .done(function(data) {
                     $("#result-2").html(data);
-                    if(loginSuccess){
+                    if (loginSuccess) {
                         step("success");
-                    }else{
+                    } else {
                         step(2);
                     }
                 });
