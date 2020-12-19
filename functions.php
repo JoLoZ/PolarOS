@@ -8,7 +8,10 @@ function db($name)
 
 function user()
 {
-    return db("users")->where("_id", "=", $_SESSION['id'])->fetch();
+    $users = db("users")->where("_id", "=", $_SESSION['id'])->fetch();
+    foreach($users as $user){
+        return $user;
+    }
 }
 
 function theme()
@@ -30,7 +33,7 @@ function create_loadingScreen()
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
-            z-index: 100;
+            z-index: 9999;
         }
 
         .loading-centered {

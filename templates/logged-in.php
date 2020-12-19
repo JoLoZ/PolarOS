@@ -25,12 +25,13 @@
 <body onload="onload()">
 
     <?php create_loadingScreen(); ?>
-
-
-    <p>Debugging is fun!</p>
-    <button onclick="window.open('/', '_self')">Make it end</button>
-
-    <pre><?php print_r(password_hash("hello", PASSWORD_DEFAULT)) ?></pre>
+    <?php
+    switch (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)) {
+        case "/":
+            include "in/home.php";
+            break;
+    }
+    ?>
 
     <!-- Core -->
     <script src="/assets/js/core/jquery.min.js"></script>
@@ -38,6 +39,9 @@
     <script src="/assets/js/core/bootstrap.min.js"></script>
     <!-- Theme JS -->
     <script src="/assets/js/argon-design-system.min.js"></script>
+    <!-- Plugins -->
+    <script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/assets/js/plugins/gridstrap.js"></script>
 
     <script src="/assets/js/app.js"></script>
 
@@ -45,9 +49,7 @@
         updateImages();
 
         function onload() {
-            setTimeout(function() {
-                $(".loading-screen").fadeOut("slow");
-            }, 1000);
+            $(".loading-screen").fadeOut("slow");
         }
     </script>
 </body>
