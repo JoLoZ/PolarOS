@@ -33,39 +33,46 @@
         background-size: cover;
     }
 </style>
-<nav class="navbar navbar-dark bg-primary fixed-top" style="padding: 0px; margin: 0px; height: 5rem">
-    <center class="centered">
-        <div class="card-columns icon-menu">
-            <a class="card bg-transparent icon" title="Notifications" href="#" onclick="window.open('/', '_self')">
-                <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
-            </a>
-            <a class="card bg-transparent icon" title="Settings" href="#" onclick="window.open('/', '_self')">
-                <div class="icon" data-bg_src="/assets/img/icons/apps/settings.png"></div>
-            </a>
-            <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
-                <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
-            </a>
-            <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
-                <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
-            </a>
-            <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
-                <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
-            </a>
+<div id="home-screen">
+    <nav class="navbar navbar-dark bg-primary fixed-top" style="padding: 0px; margin: 0px; height: 5rem">
+        <center class="centered">
+            <div class="card-columns icon-menu">
+                <a class="card bg-transparent icon" title="Notifications" href="#" onclick="window.open('/', '_self')">
+                    <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
+                </a>
+                <a class="card bg-transparent icon" title="Settings" href="#" onclick="window.open('/', '_self')">
+                    <div class="icon" data-bg_src="/assets/img/icons/apps/settings.png"></div>
+                </a>
+                <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
+                    <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
+                </a>
+                <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
+                    <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
+                </a>
+                <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
+                    <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
+                </a>
+            </div>
+        </center>
+    </nav>
+    <div class="contatiner home-container" data-auto_bg="wallpaper">
+        <div class="card-columns icon-grid centered">
+            <?php
+            $icons = 0;
+            while ($icons < 5 * 8) {
+                echo '<a class="card bg-transparent icon" title="A dark room" href="#" onclick="app(`demo_adr`, `/app/demo_adr/icon.png`)"><div class="icon" data-bg_src="/app/demo_adr/icon.png"></div></a>';
+                $icons = $icons + 1;
+            }
+            ?>
         </div>
-    </center>
-</nav>
-<div class="contatiner" data-auto_bg="wallpaper">
-    <div class="card-columns icon-grid centered">
-        <?php
-        $icons = 0;
-        while ($icons < 5 * 8) {
-            echo '<a class="card bg-transparent icon" href="#" onclick="alert(`You clicked icon number ' . $icons . '!`)"><div class="icon" data-bg_src="/assets/img/icons/logo.png"></div></a>';
-            $icons = $icons + 1;
-        }
-        ?>
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-bottom">
 
-</nav>
+<script>
+    updateImages();
+
+    function app(id, icon) {
+        createWindow("/?run=" + id, id, icon);
+    }
+</script>

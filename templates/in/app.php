@@ -1,0 +1,1 @@
+<iframe src="/app/<?php echo $_REQUEST['run'] ?>" style="width: 100%; height:calc(100% - 2rem);"></iframe>
