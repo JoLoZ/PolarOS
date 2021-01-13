@@ -35,15 +35,15 @@
 </style>
 <div id="home-screen">
     <nav class="navbar navbar-dark bg-primary fixed-top" style="padding: 0px; margin: 0px; height: 5rem">
-        <center class="centered">
+        <div class="centered">
             <div class="card-columns icon-menu">
-                <a class="card bg-transparent icon" title="Notifications" href="#" onclick="window.open('/', '_self')">
+                <a class="card bg-transparent icon" title="Notifications" href="javascript:app(`notifications`, `/assets/img/icons/logo.png`)">
                     <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
                 </a>
-                <a class="card bg-transparent icon" title="Settings" href="#" onclick="window.open('/', '_self')">
+                <a class="card bg-transparent icon" title="Settings" href="javascript:app(`settings`, `/assets/img/icons/logo.png`)">
                     <div class="icon" data-bg_src="/assets/img/icons/apps/settings.png"></div>
                 </a>
-                <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
+                <a class="card bg-transparent icon" title="Log out" href="/?action=logout">
                     <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
                 </a>
                 <a class="card bg-transparent icon" title="Log out" href="#" onclick="window.open('/?action=logout', '_self')">
@@ -53,7 +53,7 @@
                     <div class="icon" data-bg_src="/assets/img/icons/logo.png"></div>
                 </a>
             </div>
-        </center>
+        </div>
     </nav>
     <div class="contatiner home-container" data-auto_bg="wallpaper">
         <div class="card-columns icon-grid centered">
