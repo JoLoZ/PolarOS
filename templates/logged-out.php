@@ -49,7 +49,7 @@
                 <form>
                     <h2 class="step-fullscreen">Fullscreen mode suggested</h2>
                     <p class="step-fullscreen">PolarOS is best experienced in the distractionless fullscreen mode. While it's not forced, it really improves the experience.<br>You can easily enable and disable it using the <code>F11</code> key.</p>
-                    <a href="#" onclick="destroyFullscreenChecker();step(1)" class="btn btn-link step-fullscreen">Continue without fulscreen</a>
+                    <a href="javascript:destroyFullscreenChecker();step(1)" class="btn btn-link step-fullscreen">Continue without fulscreen</a>
                     <h2 class="step-1">Welcome!</h2>
                     <div class="form-group step-1">
                         <div class="input-group input-group-alternative mb-4">
@@ -60,13 +60,13 @@
                         </div>
                     </div>
                     <div class="step-1" id="result-1"></div>
-                    <a href="#" class="btn btn-primary step-1" onclick="checkUsername()">Continue</a>
+                    <a class="btn btn-primary step-1" href="javascript:checkUsername()">Continue</a>
                     <p class="step-1"></p>
-                    <p class="step-1 float-right"><a href="#" onClick="step('reset')">Forgot your username?</a></p>
-                    <p class="step-1 float-left"><a href="#" onClick="step('register')">Register an account</a></p>
+                    <p class="step-1 float-right"><a href="javascript:step('reset')">Forgot your username?</a></p>
+                    <p class="step-1 float-left"><a href="javascript:step('register')">Register an account</a></p>
 
                     <h2 class="step-2" id="welcome-user">Welcome UserNameHere!</h2>
-                    <p><a href="#" onClick="step(1)" id="usernameReminder" class="step-2">Not you?</a></p>
+                    <p><a href="javascript:step(1)" id="usernameReminder" class="step-2">Not you?</a></p>
                     <div class="form-group step-2">
                         <div class="input-group input-group-alternative mb-4">
                             <div class="input-group-prepend">
@@ -76,8 +76,8 @@
                             <div class="step-2" id="result-2"></div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary step-2" onclick="step(3)">Login</a>
-                    <p class="step-2"><a href="#" onClick="step('reset')">Forgot your password?</a></p>
+                    <a class="btn btn-primary step-2" href="javascript:step(3)">Login</a>
+                    <p class="step-2"><a href="javascript:step('reset')">Forgot your password?</a></p>
                 </form>
 
                 <h2 class="step-3">Logging you in...</h2>
@@ -86,7 +86,7 @@
 
                 <h2 class="step-remember">Should I remember you?</h2>
                 <p class="step-remember">I can save a tiny bit of information on this device to remember you and only ask you for your password the next time. <span class="text-danger">Only enable this on private devices.</span></p>
-                <a href="#" onClick="remember(); step('welcome')" class="btn btn-primary step-remember">Yes</a> <a href="#" onclick="step('welcome')" class="btn btn-secondary step-remember">No</a>
+                <a href="javascript:remember(); step('welcome')" class="btn btn-primary step-remember">Yes</a> <a href="javascript:step('welcome')" class="btn btn-secondary step-remember">No</a>
 
                 <p class="step-welcome"></p>
                 <div class="progress step-welcome">
@@ -121,7 +121,7 @@
                         <div class="text-danger" id="register_error">
                             </p>
                         </div>
-                        <a href="#" onClick="step('register2')" class="btn btn-primary step-register">Sign up</a>
+                        <a href="javascript:step('register2')" class="btn btn-primary step-register">Sign up</a>
                 </form>
 
             </center>
