@@ -10,7 +10,7 @@
 <script>
     function createWindow(url, name, icon) {
         $(".windows-container").append(`<div class="window" id="window-` + name + `"></div>`);
-        $("#app-list").append(`<a class="card bg-transparent icon" oncontextmenu="closeWindow(` + name + `)" href="#" id="window-icon-` + name + `" onclick="focusWindow('` + name + `')"><div class="icon" data-bg_src="` + icon + `"></div></a>`)
+        $("#app-list").append(`<a class="card bg-transparent icon" href="javascript:focusWindow('` + name + `')" id="window-icon-` + name + `"><div class="icon" data-bg_src="` + icon + `"></div></a>`)
         updateImages(true);
         $("#window-" + name).load(url);
         focusWindow(name);

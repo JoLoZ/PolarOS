@@ -60,7 +60,7 @@
             <?php
             $icons = 0;
             while ($icons < 5 * 8) {
-                echo '<a class="card bg-transparent icon" title="A dark room" href="#" onclick="app(`demo_adr`, `/app/demo_adr/icon.png`)"><div class="icon" data-bg_src="/app/demo_adr/icon.png"></div></a>';
+                echo '<a class="card bg-transparent icon" title="A dark room" href="javascript:app(`demo_adr`, `/app/demo_adr/icon.png`)"><div class="icon" data-bg_src="/app/demo_adr/icon.png"></div></a>';
                 $icons = $icons + 1;
             }
             ?>
